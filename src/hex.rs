@@ -1,4 +1,4 @@
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Debug,Clone, Copy, PartialEq, Eq)]
 struct Hex {
     coords: [i32; 3],
 }
@@ -18,6 +18,8 @@ impl Hex {
             coords: [q, r, -q - r],
         }
     }
+
+
 }
 
 #[cfg(test)]
@@ -44,5 +46,19 @@ mod tests {
         assert_eq!(that.coords[0], 1);
         assert_eq!(that.coords[1], 2);
         assert_eq!(that.coords[2], -3);
+    }
+
+    #[test]
+    fn equals() {
+        let that = Hex::new(1, 2, -3);
+        let this = Hex::new2(1, 2);
+        assert_eq!(this, that);
+    }
+
+    #[test]
+    fn not_equals() {
+        let that = Hex::new(1, 2, 3);
+        let this = Hex::new2(1, 2);
+        assert_ne!(this, that);
     }
 }
