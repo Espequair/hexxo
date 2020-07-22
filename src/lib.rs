@@ -1,3 +1,6 @@
+#[allow(dead_code)]
+mod hex;
+
 #[cfg(test)]
 mod tests {
     #[test]
