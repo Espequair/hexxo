@@ -44,19 +44,19 @@ impl Hex {
     pub fn q(&self) -> i32 {
         self.coords[0]
     }
-    pub fn r(self) -> i32 {
+    pub fn r(&self) -> i32 {
         self.coords[2]
     }
-    pub fn s(self) -> i32 {
+    pub fn s(&self) -> i32 {
         self.coords[3]
     }
 
-    pub fn length(self) -> i32 {
+    pub fn length(&self) -> i32 {
         (self.q().abs() + self.r().abs() + self.s().abs()) / 2
     }
 
-    pub fn distance(self, other: Hex) -> i32 {
-        Hex::length(self - other)
+    pub fn distance(&self, other: &Hex) -> i32 {
+        Hex::length(&(self - other))
     }
 
     const DIRECTIONS: [Hex; 6] = [
@@ -73,19 +73,19 @@ impl Hex {
         Hex::DIRECTIONS[direction]
     }
 
-    pub fn neighbor(self, direction: usize) -> Hex {
-        self + Hex::direction(direction)
+    fn neighbor(&self, direction: usize) -> Hex {
+        self + &Hex::direction(direction)
     }
 
-    pub fn neighbors(self) -> HexNeighbors {
-        HexNeighbors{ hex: self, count: 0}
+    pub fn neighbors(&self) -> HexNeighbors {
+        HexNeighbors{ hex: *self, count: 0}
     }
 }
 
-impl Add for Hex {
+impl Add for &Hex {
     type Output = Hex;
 
-    fn add(self, other: Hex) -> Hex {
+    fn add(self, other: &Hex) -> Hex {
         Hex {
             coords: [
                 self.coords[0] + other.coords[0],
@@ -96,10 +96,10 @@ impl Add for Hex {
     }
 }
 
-impl Sub for Hex {
+impl Sub for &Hex {
     type Output = Hex;
 
-    fn sub(self, other: Hex) -> Hex {
+    fn sub(self, other: &Hex) -> Hex {
         Hex {
             coords: [
                 self.coords[0] - other.coords[0],
@@ -110,7 +110,7 @@ impl Sub for Hex {
     }
 }
 
-impl Mul<i32> for Hex {
+impl Mul<i32> for &Hex {
     type Output = Hex;
 
     fn mul(self, scalar: i32) -> Hex {
@@ -124,7 +124,7 @@ impl Mul<i32> for Hex {
     }
 }
 
-impl Div<i32> for Hex {
+impl Div<i32> for &Hex {
     type Output = Hex;
 
     fn div(self, scalar: i32) -> Hex {
