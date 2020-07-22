@@ -1,5 +1,3 @@
-mod hex;
-
 #[derive(PartialEq, Debug, Copy, Clone)]
 struct Orientation {
     f0: f32,
@@ -13,12 +11,14 @@ struct Orientation {
     start_angle: f32,
 }
 
+const _SQRT3: f32 = 1.73205080757;
+
 const ORIENTATION_POINTY: Orientation = Orientation{
-    f0: f32::sqrt(3.0),
-    f1: f32::sqrt(3.0) / 2.0,
+    f0: _SQRT3,
+    f1: _SQRT3 / 2.0,
     f2: 0.0,
     f3: 1.5,
-    b0: f32::sqrt(3.0) / 3.0,
+    b0: _SQRT3 / 3.0,
     b1: - 1.0 / 3.0,
     b2: 0.0,
     b3: 2.0 / 3.0,
@@ -28,12 +28,12 @@ const ORIENTATION_POINTY: Orientation = Orientation{
 const ORIENTATION_FLAT: Orientation = Orientation{
     f0: 1.5,
     f1: 0.0,
-    f2: f32::sqrt(3.0) / 2.0,
+    f2: _SQRT3 / 2.0,
     f3: 2.0 / 3.0,
     b0: 0.0,
     b1: - 1.0 / 3.0,
-    b2: f32::sqrt(3.0),
-    b3: f32::sqrt(3.0) / 3.0,
+    b2: _SQRT3,
+    b3: _SQRT3 / 3.0,
     start_angle: 0.5
 };
 
@@ -53,7 +53,7 @@ struct Layout {
 impl Layout{
 
     //hex_to_pixel
-    pub fn hex_center(self, hex: Hex){
-        let M = self
-    }
+//    pub fn hex_center(self, hex: Hex){
+//        let M = self
+//    }
 }
