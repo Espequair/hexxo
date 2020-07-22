@@ -1,5 +1,6 @@
 #[allow(dead_code)]
 mod hex;
+mod layout;
 
 #[cfg(test)]
 mod tests {
